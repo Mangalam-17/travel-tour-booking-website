@@ -14,7 +14,7 @@ const Footer = () => {
                 <FiGlobe className="text-white text-xl" />
               </div>
               <span className="text-xl font-bold text-white">
-                Wander<span className="text-orange-500">Lust</span>
+                Roam<span className="text-orange-500">ly</span>
               </span>
             </Link>
             <p className="text-sm leading-relaxed mb-6 text-slate-400">
@@ -41,8 +41,8 @@ const Footer = () => {
                 { label: 'Home', path: '/' },
                 { label: 'Destinations', path: '/destinations' },
                 { label: 'Tour Packages', path: '/destinations' },
-                { label: 'About Us', path: '/' },
-                { label: 'Contact', path: '/' },
+                { label: 'About Us', path: '/about' },
+                { label: 'Contact', path: '/contact' },
               ].map((link) => (
                 <li key={link.label}>
                   <Link
@@ -91,8 +91,8 @@ const Footer = () => {
               </li>
               <li className="flex items-center gap-3">
                 <FiMail className="text-orange-500 shrink-0" />
-                <a href="mailto:hello@wanderlust.com" className="text-sm text-slate-400 hover:text-orange-400 transition-colors">
-                  hello@wanderlust.com
+                <a href="mailto:hello@roamly.com" className="text-sm text-slate-400 hover:text-orange-400 transition-colors">
+                  hello@roamly.com
                 </a>
               </li>
             </ul>
@@ -115,7 +115,7 @@ const Footer = () => {
         {/* Bottom Bar */}
         <div className="border-t border-slate-800 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="text-xs text-slate-500">
-            © 2024 WanderLust. All rights reserved.
+            © 2024 Roamly. All rights reserved.
           </p>
           <div className="flex gap-6">
             {['Privacy Policy', 'Terms of Service', 'Cookie Policy'].map((item) => (

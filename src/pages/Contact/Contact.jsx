@@ -23,7 +23,7 @@ const contactInfo = [
   {
     icon: FiMail,
     title: 'Email Us',
-    lines: ['hello@wanderlust.com', 'support@wanderlust.com'],
+    lines: ['hello@roamly.com', 'support@roamly.com'],
     color: 'bg-orange-50 text-orange-500',
   },
   {
@@ -393,7 +393,7 @@ const Contact = () => {
               {/* Map placeholder */}
               <div className="bg-white rounded-2xl shadow-md overflow-hidden">
                 <iframe
-                  title="WanderLust Office Location"
+                  title="Roamly Office Location"
                   src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3022.215573291865!2d-73.98784368459418!3d40.75797497932681!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c25855c6480299%3A0x55194ec5a1ae072e!2sTimes%20Square!5e0!3m2!1sen!2sus!4v1620000000000!5m2!1sen!2sus"
                   width="100%"
                   height="220"
@@ -409,7 +409,7 @@ const Contact = () => {
                       <FiMapPin className="text-orange-500" />
                     </div>
                     <div>
-                      <div className="font-semibold text-slate-800 text-sm">WanderLust HQ</div>
+                      <div className="font-semibold text-slate-800 text-sm">Roamly HQ</div>
                       <div className="text-slate-500 text-xs mt-0.5">123 Travel Street, Adventure City, AC 10001</div>
                     </div>
                   </div>

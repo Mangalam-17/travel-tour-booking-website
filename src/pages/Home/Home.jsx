@@ -179,7 +179,7 @@ const Home = () => {
               Ready for Your Next Adventure?
             </h2>
             <p className="text-orange-100 text-lg mb-8 max-w-xl mx-auto">
-              Join over 50,000 happy travelers who've discovered the world with WanderLust.
+              Join over 50,000 happy travelers who've discovered the world with Roamly.
             </p>
             <Link
               to="/destinations"

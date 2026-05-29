@@ -50,7 +50,7 @@ const team = [
     name: 'Arjun Mehta',
     role: 'Founder & CEO',
     image: 'https://i.pravatar.cc/200?img=12',
-    bio: '15 years in travel. Visited 80+ countries and built WanderLust to share that passion with the world.',
+    bio: '15 years in travel. Visited 80+ countries and built Roamly to share that passion with the world.',
   },
   {
     name: 'Priya Sharma',
@@ -73,7 +73,7 @@ const team = [
 ];
 
 const milestones = [
-  { year: '2012', event: 'WanderLust founded with just 5 tour packages and a big dream.' },
+  { year: '2012', event: 'Roamly founded with just 5 tour packages and a big dream.' },
   { year: '2015', event: 'Reached 5,000 happy travelers and expanded to 30 destinations.' },
   { year: '2018', event: 'Launched luxury and honeymoon packages. Won Best Travel Agency award.' },
   { year: '2021', event: 'Went fully digital. Introduced real-time booking and 24/7 support.' },
@@ -111,7 +111,7 @@ const About = () => {
               <span className="text-orange-400">Journeys</span>
             </h1>
             <p className="text-slate-300 text-lg leading-relaxed max-w-2xl">
-              WanderLust was born from a simple belief — that travel has the power to transform lives.
+              Roamly was born from a simple belief — that travel has the power to transform lives.
               Since 2012, we've been crafting unforgettable experiences for adventurers, families,
               honeymooners, and everyone in between.
             </p>
@@ -333,7 +333,7 @@ const About = () => {
               Ready to Start Your Adventure?
             </h2>
             <p className="text-orange-100 text-lg mb-8">
-              Join 50,000+ travelers who've trusted WanderLust to create their perfect journey.
+              Join 50,000+ travelers who've trusted Roamly to create their perfect journey.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link

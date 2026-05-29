@@ -10,7 +10,7 @@ const testimonials = [
     avatar: 'https://i.pravatar.cc/80?img=1',
     rating: 5,
     tour: 'Bali Paradise Escape',
-    comment: 'WanderLust made our Bali trip absolutely magical. Every detail was perfectly arranged, from the airport pickup to the sunset dinner. The guide was incredibly knowledgeable and made us feel like locals!',
+    comment: 'Roamly made our Bali trip absolutely magical. Every detail was perfectly arranged, from the airport pickup to the sunset dinner. The guide was incredibly knowledgeable and made us feel like locals!',
   },
   {
     id: 2,
@@ -37,7 +37,7 @@ const testimonials = [
     avatar: 'https://i.pravatar.cc/80?img=59',
     rating: 5,
     tour: 'Iceland Northern Lights',
-    comment: 'I saw the Northern Lights on three separate nights! Iceland is absolutely magical in winter. The glacier hiking and ice caves were incredible. WanderLust exceeded all my expectations.',
+    comment: 'I saw the Northern Lights on three separate nights! Iceland is absolutely magical in winter. The glacier hiking and ice caves were incredible. Roamly exceeded all my expectations.',
   },
   {
     id: 5,
@@ -116,7 +116,7 @@ const Testimonials = () => {
             What Our Travelers Say
           </h2>
           <p className="text-slate-500 max-w-xl mx-auto">
-            Real stories from real travelers who've experienced the magic of WanderLust tours.
+            Real stories from real travelers who've experienced the magic of Roamly tours.
           </p>
         </motion.div>
 

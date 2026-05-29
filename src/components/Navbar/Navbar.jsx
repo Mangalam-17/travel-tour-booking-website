@@ -7,6 +7,8 @@ import { useWishlist } from '../../hooks/useWishlist';
 const navLinks = [
   { label: 'Home', path: '/' },
   { label: 'Destinations', path: '/destinations' },
+  { label: 'About', path: '/about' },
+  { label: 'Contact', path: '/contact' },
 ];
 
 const Navbar = () => {
@@ -50,7 +52,7 @@ const Navbar = () => {
               <FiGlobe className="text-white text-xl" />
             </div>
             <span className={`text-xl font-bold ${logoColor} transition-colors duration-300`}>
-              Wander<span className="text-orange-500">Lust</span>
+              Roam<span className="text-orange-500">ly</span>
             </span>
           </Link>
 

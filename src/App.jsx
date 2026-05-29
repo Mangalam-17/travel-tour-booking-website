@@ -7,6 +7,8 @@ import Home from './pages/Home/Home';
 import Destinations from './pages/Destinations/Destinations';
 import TourDetails from './pages/TourDetails/TourDetails';
 import Booking from './pages/Booking/Booking';
+import About from './pages/About/About';
+import Contact from './pages/Contact/Contact';
 
 function App() {
   return (
@@ -21,6 +23,8 @@ function App() {
               <Route path="/destinations" element={<Destinations />} />
               <Route path="/tour/:id" element={<TourDetails />} />
               <Route path="/booking/:id" element={<Booking />} />
+              <Route path="/about" element={<About />} />
+              <Route path="/contact" element={<Contact />} />
               <Route path="*" element={
                 <div className="min-h-screen flex items-center justify-center pt-20">
                   <div className="text-center">
