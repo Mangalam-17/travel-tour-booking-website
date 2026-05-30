@@ -116,14 +116,14 @@ const Navbar = () => {
             transition={{ duration: 0.3 }}
             className="md:hidden bg-white border-t border-slate-100 shadow-xl overflow-hidden"
           >
-            <div className="px-4 py-4 space-y-2">
+            <div className="px-4 py-4 space-y-2 flex flex-col items-center">
               {navLinks.map((link) => (
                 <NavLink
                   key={link.path}
                   to={link.path}
                   end={link.path === '/'}
                   className={({ isActive }) =>
-                    `block px-4 py-3 rounded-xl text-sm font-medium transition-colors ${
+                    `w-full text-center px-4 py-3 rounded-xl text-sm font-medium transition-colors ${
                       isActive
                         ? 'bg-orange-50 text-orange-500'
                         : 'text-slate-700 hover:bg-slate-50'
@@ -133,10 +133,10 @@ const Navbar = () => {
                   {link.label}
                 </NavLink>
               ))}
-              <div className="pt-2 border-t border-slate-100">
+              <div className="pt-2 border-t border-slate-100 w-full flex flex-col items-center">
                 <Link
                   to="/destinations"
-                  className="flex items-center justify-between px-4 py-3 rounded-xl text-sm font-medium text-slate-700 hover:bg-slate-50"
+                  className="flex items-center justify-center gap-2 w-full px-4 py-3 rounded-xl text-sm font-medium text-slate-700 hover:bg-slate-50"
                 >
                   <span>Wishlist</span>
                   {wishlist.length > 0 && (
@@ -147,7 +147,7 @@ const Navbar = () => {
                 </Link>
                 <Link
                   to="/destinations"
-                  className="block mt-2 bg-orange-500 text-white text-center px-4 py-3 rounded-xl text-sm font-semibold"
+                  className="block w-full mt-2 bg-orange-500 text-white text-center px-4 py-3 rounded-xl text-sm font-semibold"
                 >
                   Explore Tours
                 </Link>

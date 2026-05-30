@@ -1,12 +1,11 @@
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { FiSearch, FiSliders, FiX } from 'react-icons/fi';
 import TourCard from '../../components/TourCard/TourCard';
 import SkeletonCard from '../../components/TourCard/SkeletonCard';
 import Filters from '../../components/Filters/Filters';
-import tours from '../../data/tours';
-import { filterTours, sortTours } from '../../utils/helpers';
+import { useTours } from '../../hooks/useTours';
 
 const defaultFilters = {
   search: '',
@@ -22,13 +21,10 @@ const Destinations = () => {
     ...defaultFilters,
     search: searchParams.get('search') || '',
   });
-  const [loading, setLoading] = useState(true);
   const [showFilters, setShowFilters] = useState(false);
 
-  useEffect(() => {
-    const timer = setTimeout(() => setLoading(false), 800);
-    return () => clearTimeout(timer);
-  }, []);
+  const { tours: filteredTours, loading } = useTours(filters);
+  const totalCount = filteredTours.length;
 
   useEffect(() => {
     const q = searchParams.get('search');
@@ -40,11 +36,6 @@ const Destinations = () => {
   };
 
   const handleReset = () => setFilters(defaultFilters);
-
-  const filteredTours = useMemo(() => {
-    const filtered = filterTours(tours, filters);
-    return sortTours(filtered, filters.sortBy);
-  }, [filters]);
 
   return (
     <div className="min-h-screen bg-slate-50 pt-20">
@@ -64,7 +55,7 @@ const Destinations = () => {
               Explore Our Tour Packages
             </h1>
             <p className="text-slate-400 max-w-xl mx-auto">
-              Discover {tours.length} handcrafted tours across the world's most beautiful destinations.
+              Discover handcrafted tours across the world's most beautiful destinations.
             </p>
           </motion.div>
 
@@ -127,7 +118,7 @@ const Destinations = () => {
             {!loading && (
               <div className="flex items-center justify-between mb-6">
                 <p className="text-slate-600 text-sm">
-                  Showing <strong>{filteredTours.length}</strong> of <strong>{tours.length}</strong> tours
+                  Showing <strong>{filteredTours.length}</strong> tours
                 </p>
               </div>
             )}

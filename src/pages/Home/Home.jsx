@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { FiArrowRight, FiMapPin, FiStar } from 'react-icons/fi';
@@ -7,7 +7,7 @@ import SearchBar from '../../components/SearchBar/SearchBar';
 import TourCard from '../../components/TourCard/TourCard';
 import SkeletonCard from '../../components/TourCard/SkeletonCard';
 import Testimonials from '../../components/Testimonials/Testimonials';
-import tours from '../../data/tours';
+import { useTours } from '../../hooks/useTours';
 
 const featuredDestinations = [
   { name: 'Bali', country: 'Indonesia', image: 'https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=600&q=80', tours: 3, rating: 4.8 },
@@ -26,13 +26,8 @@ const whyUs = [
 ];
 
 const Home = () => {
-  const [loading, setLoading] = useState(true);
+  const { tours, loading } = useTours();
   const popularTours = tours.slice(0, 6);
-
-  useEffect(() => {
-    const timer = setTimeout(() => setLoading(false), 1000);
-    return () => clearTimeout(timer);
-  }, []);
 
   return (
     <div>

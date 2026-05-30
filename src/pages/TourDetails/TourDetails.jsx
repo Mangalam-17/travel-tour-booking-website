@@ -6,7 +6,7 @@ import { Navigation, Pagination, Thumbs } from 'swiper/modules';
 import { FiMapPin, FiClock, FiStar, FiArrowLeft, FiCheck, FiChevronDown } from 'react-icons/fi';
 import { FaHotel, FaCoffee, FaCar, FaUserTie, FaBus } from 'react-icons/fa';
 import WishlistButton from '../../components/WishlistButton/WishlistButton';
-import tours from '../../data/tours';
+import { useTour } from '../../hooks/useTours';
 import { formatPrice } from '../../utils/helpers';
 import 'swiper/css';
 import 'swiper/css/navigation';
@@ -36,13 +36,24 @@ const TourDetails = () => {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
   const [openDay, setOpenDay] = useState(0);
 
-  const tour = tours.find((t) => t.id === Number(id));
+  const { tour, loading, error } = useTour(Number(id));
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [id]);
 
-  if (!tour) {
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-slate-50 pt-20 flex items-center justify-center">
+        <div className="text-center">
+          <div className="w-12 h-12 border-4 border-orange-500/30 border-t-orange-500 rounded-full animate-spin mx-auto mb-4" />
+          <p className="text-slate-500 text-sm">Loading tour details...</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (error || !tour) {
     return (
       <div className="min-h-screen flex items-center justify-center pt-20">
         <div className="text-center">
