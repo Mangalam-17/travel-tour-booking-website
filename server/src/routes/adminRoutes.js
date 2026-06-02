@@ -1,13 +1,14 @@
 const express = require('express');
 const router = express.Router();
 const { protect, adminOnly } = require('../middleware/auth');
+const { upload, uploadToCloudinary } = require('../config/cloudinary');
 const {
   getDashboardStats,
-  getAllBookings,
-  updateBookingStatus,
-  getAllContacts,
-  updateContactStatus,
+  getAllBookings, updateBookingStatus,
+  getAllContacts, updateContactStatus,
   getAllUsers,
+  getAllToursAdmin, createTour, updateTour, deleteTour,
+  getHeroSlides, createHeroSlide, updateHeroSlide, deleteHeroSlide,
 } = require('../controllers/adminController');
 
 // All routes require authentication + admin role
@@ -292,5 +293,140 @@ router.patch('/contacts/:id', updateContactStatus);
  *                     $ref: '#/components/schemas/User'
  */
 router.get('/users', getAllUsers);
+
+/**
+ * @swagger
+ * /api/admin/tours:
+ *   get:
+ *     summary: Get all tours (Admin)
+ *     tags: [Admin]
+ *     security:
+ *       - bearerAuth: []
+ *     responses:
+ *       200:
+ *         description: All tours
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success: { type: boolean }
+ *                 count: { type: number }
+ *                 data:
+ *                   type: array
+ *                   items:
+ *                     $ref: '#/components/schemas/Tour'
+ *   post:
+ *     summary: Create a new tour
+ *     tags: [Admin]
+ *     security:
+ *       - bearerAuth: []
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/Tour'
+ *     responses:
+ *       201:
+ *         description: Tour created
+ *       400:
+ *         description: Validation error
+ *
+ * /api/admin/tours/{id}:
+ *   put:
+ *     summary: Update a tour
+ *     tags: [Admin]
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/Tour'
+ *     responses:
+ *       200:
+ *         description: Tour updated
+ *       404:
+ *         description: Tour not found
+ *   delete:
+ *     summary: Delete a tour
+ *     tags: [Admin]
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: Tour deleted
+ *       404:
+ *         description: Tour not found
+ */
+router.get('/tours', getAllToursAdmin);
+router.post('/tours', createTour);
+router.put('/tours/:id', updateTour);
+router.delete('/tours/:id', deleteTour);
+
+// ── Hero Slides ──────────────────────────────────────────────────
+router.get('/hero-slides', getHeroSlides);
+router.post('/hero-slides', createHeroSlide);
+router.put('/hero-slides/:id', updateHeroSlide);
+router.delete('/hero-slides/:id', deleteHeroSlide);
+
+/**
+ * @swagger
+ * /api/admin/upload:
+ *   post:
+ *     summary: Upload an image to Cloudinary
+ *     tags: [Admin]
+ *     security:
+ *       - bearerAuth: []
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         multipart/form-data:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               image:
+ *                 type: string
+ *                 format: binary
+ *     responses:
+ *       200:
+ *         description: Image uploaded — returns Cloudinary URL
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success: { type: boolean, example: true }
+ *                 url: { type: string, example: 'https://res.cloudinary.com/...' }
+ *       400:
+ *         description: No file uploaded or invalid format
+ */
+router.post('/upload', upload.single('image'), async (req, res) => {
+  try {
+    if (!req.file) {
+      return res.status(400).json({ success: false, message: 'No image file provided' });
+    }
+    // Upload buffer directly to Cloudinary — returns secure_url guaranteed
+    const url = await uploadToCloudinary(req.file.buffer, req.file.mimetype);
+    res.json({ success: true, url });
+  } catch (error) {
+    console.error('Upload error:', error);
+    res.status(500).json({ success: false, message: error.message || 'Upload failed' });
+  }
+});
 
 module.exports = router;

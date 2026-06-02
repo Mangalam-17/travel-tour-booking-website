@@ -2,23 +2,18 @@ import { useState } from 'react';
 import { NavLink, Outlet, useNavigate, Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
-  FiGrid,
-  FiCalendar,
-  FiMail,
-  FiUsers,
-  FiGlobe,
-  FiLogOut,
-  FiMenu,
-  FiX,
-  FiChevronRight,
+  FiGrid, FiCalendar, FiMail, FiUsers,
+  FiGlobe, FiLogOut, FiMenu, FiX, FiChevronRight, FiMap, FiImage,
 } from 'react-icons/fi';
 import { useAuth } from '../../context/AuthContext';
 
 const navItems = [
-  { label: 'Dashboard', path: '/admin', icon: FiGrid, end: true },
-  { label: 'Bookings', path: '/admin/bookings', icon: FiCalendar },
-  { label: 'Contacts', path: '/admin/contacts', icon: FiMail },
-  { label: 'Users', path: '/admin/users', icon: FiUsers },
+  { label: 'Dashboard',   path: '/admin',            icon: FiGrid,     end: true },
+  { label: 'Tours',       path: '/admin/tours',       icon: FiMap },
+  { label: 'Hero Slides', path: '/admin/hero-slides', icon: FiImage },
+  { label: 'Bookings',    path: '/admin/bookings',    icon: FiCalendar },
+  { label: 'Contacts',    path: '/admin/contacts',    icon: FiMail },
+  { label: 'Users',       path: '/admin/users',       icon: FiUsers },
 ];
 
 const Sidebar = ({ isOpen, onClose }) => {

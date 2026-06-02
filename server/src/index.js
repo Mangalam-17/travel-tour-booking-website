@@ -9,6 +9,7 @@ const bookingRoutes = require('./routes/bookingRoutes');
 const contactRoutes = require('./routes/contactRoutes');
 const authRoutes = require('./routes/authRoutes');
 const adminRoutes = require('./routes/adminRoutes');
+const heroSlideRoutes = require('./routes/heroSlideRoutes');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -31,6 +32,7 @@ app.use('/api/bookings', bookingRoutes);
 app.use('/api/contacts', contactRoutes);
 app.use('/api/auth', authRoutes);
 app.use('/api/admin', adminRoutes);
+app.use('/api/hero-slides', heroSlideRoutes);
 
 // Swagger API Docs
 app.use('/api/docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec, {

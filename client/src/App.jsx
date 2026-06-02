@@ -18,6 +18,9 @@ import AdminDashboard from './pages/Admin/AdminDashboard';
 import AdminBookings from './pages/Admin/AdminBookings';
 import AdminContacts from './pages/Admin/AdminContacts';
 import AdminUsers from './pages/Admin/AdminUsers';
+import AdminTours from './pages/Admin/AdminTours';
+import AdminTourForm from './pages/Admin/AdminTourForm';
+import AdminHeroSlides from './pages/Admin/AdminHeroSlides';
 
 // Wrapper that adds Navbar + Footer for public pages
 const PublicLayout = ({ children }) => (
@@ -50,6 +53,10 @@ const AppRoutes = () => {
           <Route path="bookings" element={<AdminBookings />} />
           <Route path="contacts" element={<AdminContacts />} />
           <Route path="users" element={<AdminUsers />} />
+          <Route path="tours" element={<AdminTours />} />
+          <Route path="tours/new" element={<AdminTourForm />} />
+          <Route path="tours/:id/edit" element={<AdminTourForm />} />
+          <Route path="hero-slides" element={<AdminHeroSlides />} />
         </Route>
 
         {/* Public routes — with Navbar/Footer */}

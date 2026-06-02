@@ -1,14 +1,16 @@
-import { useRef } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Pagination, EffectFade } from 'swiper/modules';
 import { FiArrowRight, FiStar, FiUsers, FiMapPin } from 'react-icons/fi';
+import apiFetch from '../../lib/api';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/effect-fade';
 
-const slides = [
+// Fallback slides if API is unavailable
+const FALLBACK_SLIDES = [
   {
     image: 'https://images.unsplash.com/photo-1524492412937-b28074a5d7da?w=1600&q=80',
     title: 'Discover Rajasthan',
@@ -43,6 +45,19 @@ const stats = [
 
 const Hero = () => {
   const swiperRef = useRef(null);
+  const [slides, setSlides] = useState(FALLBACK_SLIDES);
+
+  useEffect(() => {
+    apiFetch('/api/hero-slides')
+      .then((res) => {
+        if (res.data && res.data.length > 0) {
+          setSlides(res.data);
+        }
+      })
+      .catch(() => {
+        // silently fall back to hardcoded slides
+      });
+  }, []);
 
   return (
     <section className="relative min-h-[560px] sm:min-h-[680px] lg:min-h-screen overflow-hidden">
@@ -58,7 +73,7 @@ const Hero = () => {
           className="h-full w-full"
         >
           {slides.map((slide, index) => (
-            <SwiperSlide key={index}>
+            <SwiperSlide key={slide._id || index}>
               <div className="relative h-full w-full">
                 <img
                   src={slide.image}
@@ -72,10 +87,8 @@ const Hero = () => {
         </Swiper>
       </div>
 
-      {/* Content — flex column so stats sit naturally below text */}
+      {/* Content */}
       <div className="relative z-10 flex flex-col items-center justify-between min-h-[560px] sm:min-h-[680px] lg:min-h-screen px-4 pt-28 sm:pt-36 pb-8 sm:pb-12">
-
-        {/* Main text block */}
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
@@ -118,7 +131,7 @@ const Hero = () => {
           </div>
         </motion.div>
 
-        {/* Stats bar — sits at the bottom, part of normal flow, no overlap */}
+        {/* Stats bar */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -139,7 +152,6 @@ const Hero = () => {
             ))}
           </div>
         </motion.div>
-
       </div>
     </section>
   );
